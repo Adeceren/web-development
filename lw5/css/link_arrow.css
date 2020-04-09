@@ -1,0 +1,11 @@
+.link_arrow {
+	padding: 0;
+	width: 150px;
+	margin-top: -20px;
+	margin-right: -120px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14pt;
+	line-height: 1.5;
+	float: right;
+	color: #3CB371;
+}

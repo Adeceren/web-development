@@ -1,0 +1,12 @@
+.quote_writer {
+	padding: 67px;
+	margin-top: -75px;
+	margin-right: -74px;
+	height: 218px;
+	width: 440px;
+	font-family: 'Roboto', sans-serif;
+	color: black;
+	line-height: 1.7;
+	font-size: 12pt;
+	float: right;
+}

@@ -1,33 +1,32 @@
 <?php
   $g = $_GET["password"];
-  $all = strlen($_GET["password"]);
+  $length = strlen($_GET["password"]);
   $result = 0;
-  $numbers = 0;
-  if (!empty($g)) {
-	while ($h <= $all) {
-	  if(preg_match("[0-9]", $g)); {
-		$c = $c + 4;
-		$h++;
-	  }
-	  if(preg_match("[A-Z]", $g)); {
-		$c = $c + 4;
-		$h++;
-		$numbers = 2;
-	  }
-	if(preg_match("[a-z]", $g)); {
-		$c = $c + 4;
-		$h++;
-		$numbers = 3;
-	  }
-	}
-	$result = ($all * 4); //+ $c;
-	if($number == 0) {
-	  $result = $result - $all;
-	}
-	echo "Надежность пароля $result $numbers";
+  if(empty($g)) {
+      echo "Пустая строка <br/>";
+      exit;
   }
-  else {
-	echo "Пустая строка <br/>";
-	echo "Надежность пароля $result";
+  if(preg_match('/[а-яА-Я]/', $g)) {
+      echo "Только латинские буквы.";
+      exit;
   }
+  $result = ($length * 4);
+  $digit = strlen(preg_replace('/[a-zA-Z]/', '' ,$g));
+  $result += ($digit * 4);
+  $letters_big = strlen(preg_replace('/[0-9a-z]/', '' ,$g));
+  $result += (($length - $letters_big) * 2);
+  $letters_small = strlen(preg_replace('/[0-9A-Z]/', '' ,$g));
+  $result += (($length - $letters_small) * 2);
+  foreach(count_chars($g) as $value) {
+      if($value > 1) {
+          $result -= $value;
+      }
+  }
+  if(ctype_digit($g)) {
+      $result -= $length;
+  }
+  if(ctype_alpha($g)) {
+      $result -= $length;
+  }
+  echo "Надежность пароля $result";
 ?>
